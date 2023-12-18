@@ -96,12 +96,12 @@ namespace nk125 {
 		* I'm not 100% sure the implementation of some types like SOCK_RAW, SOCK_RDM, AF_NETBIOS, etc. in Linux/Unix so i'm just omitting those
 		*/
 		namespace Hints {
-			template <typename T, typename = std::enable_if_t<std::is_enum_v<T>>>
+			template <typename T, typename = std::enable_if_t<std::is_enum<T>::value>>
 			int hintNum(T hintClass) {
 				return static_cast<int>(hintClass);
 			}
 
-			template <typename T, typename = std::enable_if_t<std::is_enum_v<T>>>
+			template <typename T, typename = std::enable_if_t<std::is_enum<T>::value>>
 			T revHintNum(int hintNum) {
 				return static_cast<T>(hintNum);
 			}

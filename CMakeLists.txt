@@ -7,7 +7,7 @@ option(BUILD_TEST "Compiles a test program" OFF)
 # Sets up the library as only interface
 add_library(DNSResolver INTERFACE)
 
-target_compile_features(DNSResolver INTERFACE cxx_std_17)
+target_compile_features(DNSResolver INTERFACE cxx_std_11)
 
 target_include_directories(DNSResolver INTERFACE "include")
 
