@@ -12,6 +12,7 @@
 	#endif
 #else
 	// UNIX Implementation
+	#include <arpa/inet.h>
 	#include <sys/types.h>
 	#include <sys/socket.h>
 	#include <netdb.h>
@@ -107,18 +108,25 @@ namespace nk125 {
 
 			enum class Flags : uint8_t {
 				None = 0,
+				// Only allows ip addresses, not hostnames
+				// You can test it with ::1, 127.0.0.1, etc.
 				OnlyNumericAddress = 1 << 0,
+				// Only allows service to be a numeric port
 				OnlyNumericPort = 1 << 1,
 				// Sorry for windows users, the support of punycode for DNS resolution requires a fully rewrite of the lib
 				// and even i couldn't find a punycode domain for testing
 #ifndef _WIN32
+				// Enables AI_IDN flag in hints
 				UseIDNPunycode = 1 << 2
 #endif
 			};
 
 			enum class Protocol : int {
+				// TCP Protocol
 				TCP = IPPROTO_TCP,
+				// UDP Protocol
 				UDP = IPPROTO_UDP,
+				// Both TCP and UDP
 				Any = 0
 			};
 
@@ -134,13 +142,18 @@ namespace nk125 {
 				RDM = SOCK_RDM,
 				// SeqPacket, for more info about Socket Types see the link above and https://www.man7.org/linux/man-pages/man2/socket.2.html#DESCRIPTION
 				SeqPacket = SOCK_SEQPACKET,*/
+				// Any of the supported socket types of getaddrinfo()
 				Any = 0
 			};
 
 			enum class Family : int {
+				// Internet Protocol version 4
 				IPv4 = AF_INET,
+				// Internet Protocol version 6
 				IPv6 = AF_INET6,
+				// Unspecified, both IPv4 and IPv6
 				Unspecified = AF_UNSPEC,
+				// Unspecified, both IPv4 and IPv6
 				Any = AF_UNSPEC
 			};
 		}

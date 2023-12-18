@@ -2,10 +2,9 @@
 #include <DNS Resolver.hpp>
 #include <string>
 
-#define enumValToStr(x) case x: return #x
+#define enumValToStr(x) case static_cast<int>(x): return #x
 
-template <typename T, typename = std::enable_if_t<std::is_enum_v<T>>>
-std::string enumFamily(T enV) {
+std::string enumFamily(nk125::DNS::Hints::Family enV) {
 	using namespace nk125::DNS::Hints;
 
 	switch (static_cast<int>(enV)) {
@@ -17,8 +16,7 @@ std::string enumFamily(T enV) {
 	return "Unknown field" + std::to_string(static_cast<int>(enV));
 }
 
-template <typename T, typename = std::enable_if_t<std::is_enum_v<T>>>
-std::string enumProto(T enV) {
+std::string enumProto(nk125::DNS::Hints::Protocol enV) {
 	using namespace nk125::DNS::Hints;
 
 	switch (static_cast<int>(enV)) {
@@ -30,8 +28,7 @@ std::string enumProto(T enV) {
 	return "Unknown field" + std::to_string(static_cast<int>(enV));
 }
 
-template <typename T, typename = std::enable_if_t<std::is_enum_v<T>>>
-std::string enumSocket(T enV) {
+std::string enumSocket(nk125::DNS::Hints::Socket enV) {
 	using namespace nk125::DNS::Hints;
 
 	switch (static_cast<int>(enV)) {
