@@ -1,5 +1,5 @@
 #include <DNS Resolver.hpp>
-#include "enum.hpp"
+//#include "enum.hpp"
 #include <iostream>
 #include <string>
 
@@ -32,9 +32,9 @@ int main(int argc, char* argv[]) {
 
 	for (nk125::DNS::AddressInfo& associatedIP : DNS::ResolveHostname(&ec, hostname, service, Flags::None, Protocol::Any, Socket::Any, Family::Any)) {
 		std::cout << "IP: " << associatedIP.IP << "\n" <<
-			"Family: " << enumFamily(associatedIP.Family) << "\n" <<
-			"Protocol: " << enumProto(associatedIP.Protocol) << "\n" <<
-			"SocketType: " << enumSocket(associatedIP.SocketType) << "\n\n";
+			"Family: " << (associatedIP.Family) << "\n" <<
+			"Protocol: " << (associatedIP.Protocol) << "\n" <<
+			"SocketType: " << (associatedIP.SocketType) << "\n\n";
 	}
 
 	if (ec) {
